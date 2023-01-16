@@ -15,4 +15,8 @@ class Specie extends Model
         'areas',
         'img' ,
     ];
+
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }

@@ -28,6 +28,11 @@
                             <button class="btn btn-primary justify-content-center" type="button">
                                 <a class="link-light" href="{{ route('showSpecie', ['id' => $specie->id]) }}">Show</a>
                             </button>
+
+                            <button class="btn btn-secondary justify-content-center" type="button">
+                                <a class="link-light" href="{{ route('sighting', ['id' => $specie->id]) }}">avistado</a>
+                            </button>
+
                         </form>
                     <div>
                 </div>

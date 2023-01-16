@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Specie;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SpecieController extends Controller
 {
@@ -90,5 +92,11 @@ class SpecieController extends Controller
     {
        Specie::destroy($id);
        return redirect()->route('home');
+    }
+    public function  sighting($id){
+        $specie = Specie::find($id);
+        $user = User::find(Auth::id());
+        $user->specie()->attach($specie);
+        return redirect()->route('home');
     }
 }

@@ -35,6 +35,8 @@ Route::patch('/specie/{id}', [SpecieController::class, 'update'])->name('updateS
 //Show
 Route::get('/show/{id}', [SpecieController::class, 'show'])->name('showSpecie');
 
+//sighting
+Route::get('/sighting/{id}', [SpecieController::class, 'sighting'])->name('sighting')->middleware('auth');
 
 
 
