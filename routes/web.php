@@ -21,3 +21,5 @@ Auth::routes();
 Route::get('/', [SpecieController::class, 'index'])->name('home');
 
 Route::get('/home', [SpecieController::class, 'index']);
+//Delete
+Route::delete('/delete/{id}', [SpecieController::class, 'destroy'])->name('deleteSpecie');

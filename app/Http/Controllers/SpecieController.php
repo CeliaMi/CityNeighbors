@@ -82,6 +82,7 @@ class SpecieController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Specie::destroy($id);
+       return redirect()->route('home');
     }
 }

@@ -9,6 +9,11 @@
                     <h5 class="card-title">{{ $specie->name }}</h5>
                     <p class="card-text">{{$specie->description}}</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <form action="{{ route('deleteSpecie', ['id'=> $specie->id]) }}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button type="submit" class="bt-adm m-1 d-flex justify-content-center align-items-center" onclick="return confirm('¿Estas seguro de querer elimnar esta Especie? {{ $specie->name }} - ID {{ $specie->id }}')"> Eliminar</button>
+                 </form>
                 </div>
             </div>
         </section>
