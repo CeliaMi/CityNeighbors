@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="cardTitle">New Specie</h2>
-                        <form class="justify-content-center" action="{{ route('createSpecie') }}" method="post">
+                        <form class="justify-content-center" action="{{ route('storeSpecie') }}" method="post">
                             @csrf
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Name</span>

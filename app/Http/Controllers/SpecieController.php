@@ -37,7 +37,9 @@ class SpecieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $specie = request()->except('_token');
+        Specie::create($specie);
+        return redirect()->route('home');
     }
 
     /**

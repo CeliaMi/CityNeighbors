@@ -25,4 +25,6 @@ Route::get('/home', [SpecieController::class, 'index']);
 Route::delete('/delete/{id}', [SpecieController::class, 'destroy'])->name('deleteSpecie');
 //Create
 Route::get('/create', [SpecieController::class, 'create'])->name('createSpecie');
+Route::post('/', [SpecieController::class, 'store'])->name('storeSpecie');
+
 
