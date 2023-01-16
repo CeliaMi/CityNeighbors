@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Specie;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        Specie::factory()-> create([
+            'name'=>' Carbonero',
+            'individuals'=>'2',
+            'description'=>'Ave insectívora pequeña, muy llamativa y conspicua por sus colores azulados y amarillentos y sus frecuentes reclamos.',
+            'areas'=>' resulta común en ambientes arbolados, tanto bien conservados como degradados',
+            'img'=>'https://seo.org/wp-content/uploads/2013/11/F489_Foto_02.jpg' ,
+        ]);
+
+        Specie::factory(9)-> create();
     }
 }
