@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Specie;
+use App\Models\User;
 
 class CRUDSpecieTest extends TestCase
 {
@@ -36,13 +37,37 @@ class CRUDSpecieTest extends TestCase
         $this->withExceptionHandling();
         $specie = Specie::factory()->create();
         $this->assertCount(1, Specie::all());
+        $userNoAdmin = User::factory()->create(['isAdmin' => false]);
+        $this->actingAs($userNoAdmin);
+        $response = $this->delete(route('deleteSpecie', $specie->id));
+        $this->assertCount(1,Specie::all());
+        
+        $userAdmin = User::factory()->create(['isAdmin' => true]);
+        $this->actingAs($userAdmin);
         $response = $this->delete(route('deleteSpecie', $specie->id));
         $this->assertCount(0,Specie::all());
-        
     }
 
     public function test_anSpecieCanBeCreated(){
         $this->withExceptionHandling();
+        $userAdmin = User::factory()->create(['isAdmin' => true]);
+        $this->actingAs($userAdmin);
+        $this->assertCount(0,Specie::all());
+
+        $response = $this->post(route('storeSpecie'),
+        [
+            'name'=>' ave',
+            'individuals'=>'7',
+            'description'=>'description',
+            'areas'=>'areas',
+            'img'=>'img' , 
+        ]);
+
+        $this->assertCount(1, Specie::all());
+
+        $userNoAdmin = User::factory()->create(['isAdmin' => false]);
+        $this->actingAs($userNoAdmin);
+
         $response = $this->post(route('storeSpecie'),
         [
             'name'=>' ave',
@@ -61,7 +86,19 @@ class CRUDSpecieTest extends TestCase
         $specie = Specie::Factory()->create();
         $this->assertCount(1, Specie::all());
 
+        $userAdmin = User::factory()->create(['isAdmin' => true]);
+        $this->actingAs($userAdmin);
+
         $response = $this->patch(route('updateSpecie', $specie->id),['name'=>'New Name']);
         $this->assertEquals('New Name', Specie::first()->name);
+
+
+        $userNoAdmin = User::factory()->create(['isAdmin' => false]);
+        $this->actingAs($userNoAdmin);
+
+        $response = $this->patch(route('updateSpecie', $specie->id),['name'=>'New Name if no Admin']);
+        $this->assertEquals('New Name', Specie::first()->name);
     }
+
+
 }

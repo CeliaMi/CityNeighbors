@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::check()&& Auth::user()->isAdmin)
 <div class="d-flex align-items justify-content-center">
     <button class="btn btn-secondary justify-content-center" type="button">
         <a class="link-light" href="{{ route('createSpecie') }}">+ New Specie</a>
     </button>
 </div>
+@endif()
     @foreach ($species as $specie)
         <section class="d-flex flex-wrap row justify-content-center my-4 px-xxl-5">
             <div class="card" style="width: 18rem;">
@@ -14,6 +16,7 @@
                     <h5 class="card-title">{{ $specie->name }}</h5>
                     <p class="card-text">{{$specie->description}}</p>
                     <div class="d-inline d-md-flex justify-content-center">
+                        @if(Auth::check()&& Auth::user()->isAdmin)
                         <form action="{{ route('deleteSpecie', ['id'=> $specie->id]) }}" method="post">
                         @method('delete')
                         @csrf
@@ -21,6 +24,7 @@
                             <button class="btn btn-primary justify-content-center" type="button">
                                 <a class="link-light" href="{{ route('editSpecie', ['id' => $specie->id]) }}">Edit</a>
                             </button>
+                        @endif()
                             <button class="btn btn-primary justify-content-center" type="button">
                                 <a class="link-light" href="{{ route('showSpecie', ['id' => $specie->id]) }}">Show</a>
                             </button>

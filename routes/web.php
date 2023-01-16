@@ -21,16 +21,17 @@ Auth::routes();
 Route::get('/', [SpecieController::class, 'index'])->name('home');
 
 Route::get('/home', [SpecieController::class, 'index']);
+
 //Delete
-Route::delete('/delete/{id}', [SpecieController::class, 'destroy'])->name('deleteSpecie');
+Route::delete('/delete/{id}', [SpecieController::class, 'destroy'])->name('deleteSpecie')->middleware('isadmin', 'auth');
 //Create
-Route::get('/create', [SpecieController::class, 'create'])->name('createSpecie');
-Route::post('/', [SpecieController::class, 'store'])->name('storeSpecie');
+Route::get('/create', [SpecieController::class, 'create'])->name('createSpecie')->middleware('isadmin', 'auth');
+Route::post('/', [SpecieController::class, 'store'])->name('storeSpecie')->middleware('isadmin', 'auth');
 //Edit
-Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie');
+Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie')->middleware('isadmin', 'auth');
 //Update
-Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie');
-Route::patch('/specie/{id}', [SpecieController::class, 'update'])->name('updateSpecie');
+Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie')->middleware('isadmin', 'auth');
+Route::patch('/specie/{id}', [SpecieController::class, 'update'])->name('updateSpecie')->middleware('isadmin', 'auth');
 //Show
 Route::get('/show/{id}', [SpecieController::class, 'show'])->name('showSpecie');
 

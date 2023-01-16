@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Specie;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,5 +31,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Specie::factory(9)-> create();
+
+        User::factory()-> create(['name' => 'Admin', 'email' => 'admin@admin.com', 'isAdmin' =>true]);
+        User::factory()-> create(['name' => 'User', 'email' => 'user@user.com', 'isAdmin' =>false]);
+        User::factory(5)->create();
     }
 }
