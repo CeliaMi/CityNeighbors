@@ -50,7 +50,8 @@ class SpecieController extends Controller
      */
     public function show($id)
     {
-        //
+       $specie = Specie::find($id);
+       return view ('showSpecie', compact('specie'));
     }
 
     /**
@@ -61,7 +62,8 @@ class SpecieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $specie = Specie::find($id);
+        return view ('editSpecie', compact('specie'));
     }
 
     /**
@@ -73,7 +75,9 @@ class SpecieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $specie = request()->except('_token','_method');
+        Specie::where('id', '=', $id)->update($specie);
+        return redirect()->route('home');
     }
 
     /**

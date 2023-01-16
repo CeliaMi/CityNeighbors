@@ -13,11 +13,19 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $specie->name }}</h5>
                     <p class="card-text">{{$specie->description}}</p>
-                    <form action="{{ route('deleteSpecie', ['id'=> $specie->id]) }}" method="post">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-danger bt-adm m-1 d-flex justify-content-center align-items-center" onclick="return confirm('¿Estas seguro de querer elimnar esta Especie? {{ $specie->name }} - ID {{ $specie->id }}')"> Eliminar</button>
-                 </form>
+                    <div class="d-inline d-md-flex justify-content-center">
+                        <form action="{{ route('deleteSpecie', ['id'=> $specie->id]) }}" method="post">
+                        @method('delete')
+                        @csrf
+                            <button type="submit" class="btn btn-danger bt-adm m-1 d-flex justify-content-center align-items-center" onclick="return confirm('¿Estas seguro de querer elimnar esta Especie? {{ $specie->name }} - ID {{ $specie->id }}')"> Eliminar</button>
+                            <button class="btn btn-primary justify-content-center" type="button">
+                                <a class="link-light" href="{{ route('editSpecie', ['id' => $specie->id]) }}">Edit</a>
+                            </button>
+                            <button class="btn btn-primary justify-content-center" type="button">
+                                <a class="link-light" href="{{ route('showSpecie', ['id' => $specie->id]) }}">Show</a>
+                            </button>
+                        </form>
+                    <div>
                 </div>
             </div>
         </section>

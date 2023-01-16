@@ -56,6 +56,12 @@ class CRUDSpecieTest extends TestCase
 
     }
 
+    public function test_anSpecieCanBeUpdated(){
+        $this->withExceptionHandling();
+        $specie = Specie::Factory()->create();
+        $this->assertCount(1, Specie::all());
 
-
+        $response = $this->patch(route('updateSpecie', $specie->id),['name'=>'New Name']);
+        $this->assertEquals('New Name', Specie::first()->name);
+    }
 }

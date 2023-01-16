@@ -22,7 +22,7 @@ class SpecieFactory extends Factory
             'description' =>$this-> faker->realText(),
             'areas' =>$this-> faker->country(),
             'img' => $this->faker->imageUrl(),
-    
+
         ];
     }
 }

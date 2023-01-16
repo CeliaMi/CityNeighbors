@@ -26,5 +26,14 @@ Route::delete('/delete/{id}', [SpecieController::class, 'destroy'])->name('delet
 //Create
 Route::get('/create', [SpecieController::class, 'create'])->name('createSpecie');
 Route::post('/', [SpecieController::class, 'store'])->name('storeSpecie');
+//Edit
+Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie');
+//Update
+Route::get('/edit/{id}', [SpecieController::class, 'edit'])->name('editSpecie');
+Route::patch('/specie/{id}', [SpecieController::class, 'update'])->name('updateSpecie');
+//Show
+Route::get('/show/{id}', [SpecieController::class, 'show'])->name('showSpecie');
+
+
 
 
