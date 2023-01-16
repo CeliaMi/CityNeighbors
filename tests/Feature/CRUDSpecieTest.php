@@ -41,6 +41,21 @@ class CRUDSpecieTest extends TestCase
         
     }
 
+    public function test_anSpecieCanBeCreated(){
+        $this->withExceptionHandling();
+        $response = $this->post(route('storeSpecie'),
+        [
+            'name'=>' ave',
+            'individuals'=>'7',
+            'description'=>'description',
+            'areas'=>'areas',
+            'img'=>'img' , 
+        ]);
+
+        $this->assertCount(1, Specie::all());
+
+    }
+
 
 
 }

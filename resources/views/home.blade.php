@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="d-flex align-items justify-content-center">
+    <button class="btn btn-secondary justify-content-center" type="button">
+        <a class="link-light" href="{{ route('createSpecie') }}">+ New Specie</a>
+    </button>
+</div>
     @foreach ($species as $specie)
         <section class="d-flex flex-wrap row justify-content-center my-4 px-xxl-5">
             <div class="card" style="width: 18rem;">
@@ -8,11 +13,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $specie->name }}</h5>
                     <p class="card-text">{{$specie->description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     <form action="{{ route('deleteSpecie', ['id'=> $specie->id]) }}" method="post">
                     @method('delete')
                     @csrf
-                    <button type="submit" class="bt-adm m-1 d-flex justify-content-center align-items-center" onclick="return confirm('¿Estas seguro de querer elimnar esta Especie? {{ $specie->name }} - ID {{ $specie->id }}')"> Eliminar</button>
+                    <button type="submit" class="btn btn-danger bt-adm m-1 d-flex justify-content-center align-items-center" onclick="return confirm('¿Estas seguro de querer elimnar esta Especie? {{ $specie->name }} - ID {{ $specie->id }}')"> Eliminar</button>
                  </form>
                 </div>
             </div>

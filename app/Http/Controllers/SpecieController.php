@@ -26,7 +26,7 @@ class SpecieController extends Controller
      */
     public function create()
     {
-        //
+        return view ('createSpecie');
     }
 
     /**
